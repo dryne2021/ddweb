@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Writing Help - Your Path to Academic Success</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1A237E', // Dark blue for primary elements
+                        secondary: '#42A5F5', // Lighter blue for accents
+                        accent: '#FFC107', // Amber for highlights
+                        textdark: '#212121', // Dark grey for body text
+                        textlight: '#FAFAFA', // Light grey for text on dark backgrounds
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles if needed, though Tailwind should cover most */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: theme('colors.textdark');
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        .section-heading {
+            position: relative;
+            display: inline-block;
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -8px;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: theme('colors.secondary');
+            border-radius: 9999px;
+        }
+        /* Custom scrollbar for aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.secondary');
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.primary');
+        }
+        /* Simple fade-in animation for sections */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Style for the background video */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video covers the entire area */
+            z-index: 0; /* Keeps the video behind the content */
+            opacity: 1.0; /* Changed opacity to 1.0 to make the video fully visible */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-primary shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <!-- Logo/Icon (using SVG for professionalism) -->
+                <svg class="h-8 w-8 text-accent" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a2 2 0 012 2v8a2 2 0 01-2 2H6a3 3 0 01-3-3V6zm4 0a1 1 0 011-1h6a1 1 0 110 2H8a1 1 0 01-1-1zm1 4a1 1 0 100 2h6a1 1 0 100-2H8z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-2xl font-bold text-textlight font-inter">AcademicaAid</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-textlight hover:text-accent transition duration-300 font-medium">Home</a>
+                <a href="#services" class="text-textlight hover:text-accent transition duration-300 font-medium">Services</a>
+                <a href="#how-it-works" class="text-textlight hover:text-accent transition duration-300 font-medium">How It Works</a>
+                <a href="#why-choose-us" class="text-textlight hover:text-accent transition duration-300 font-medium">Why Choose Us</a>
+                <a href="#testimonials" class="text-textlight hover:text-accent transition duration-300 font-medium">Testimonials</a>
+                <a href="#about-us" class="text-textlight hover:text-accent transition duration-300 font-medium">About Us</a>
+                <a href="#contact" class="text-textlight hover:text-accent transition duration-300 font-medium">Contact</a>
+                <a href="#pricing" class="bg-accent text-primary px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition duration-300 shadow-md">Get a Quote</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-textlight focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary py-4 px-6">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-textlight hover:text-accent transition duration-300 font-medium block">Home</a>
+                <a href="#services" class="text-textlight hover:text-accent transition duration-300 font-medium block">Services</a>
+                <a href="#how-it-works" class="text-textlight hover:text-accent transition duration-300 font-medium block">How It Works</a>
+                <a href="#why-choose-us" class="text-textlight hover:text-accent transition duration-300 font-medium block">Why Choose Us</a>
+                <a href="#testimonials" class="text-textlight hover:text-accent transition duration-300 font-medium block">Testimonials</a>
+                <a href="#about-us" class="text-textlight hover:text-accent transition duration-300 font-medium block">About Us</a>
+                <a href="#contact" class="text-textlight hover:text-accent transition duration-300 font-medium block">Contact</a>
+                <a href="#pricing" class="bg-accent text-primary px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition duration-300 shadow-md text-center">Get a Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative text-textlight py-20 md:py-32 overflow-hidden shadow-xl">
+            <!-- Background Video -->
+            <video autoplay loop muted class="video-background" poster="https://placehold.co/1920x1080/FFFFFF/000000?text=Academic+Writing+Background">
+                <!-- Use the relative path to your video file -->
+                <source src="image.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-pulse">
+                        Elevate Your Academic Writing. <br class="hidden md:block">Achieve Excellence.
+                    </h1>
+                    <p class="text-lg md:text-xl mb-8 opacity-90">
+                        Expert academic assistance for essays, research papers, dissertations, and more.
+                        Your success is our priority.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#services" class="bg-accent text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition duration-300 shadow-xl transform hover:scale-105">
+                            Explore Services
+                        </a>
+                        <a href="#contact" class="bg-transparent border-2 border-textlight text-textlight px-8 py-4 rounded-full font-bold text-lg hover:bg-textlight hover:text-primary transition duration-300 shadow-xl transform hover:scale-105">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center">
+                    <img src="https://placehold.co/500x350/42A5F5/FFFFFF?text=Academic+Success+Illustration" alt="Illustration of students celebrating academic success" class="rounded-lg shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500 max-w-full h-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-16 md:py-24 bg-white fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-extrabold text-center mb-12 text-primary section-heading">Our Comprehensive Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 border-t-4 border-secondary hover:border-accent">
+                        <div class="flex items-center mb-4 text-secondary">
+                            <svg class="h-8 w-8 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
+                            </svg>
+                            <h3 class="text-2xl font-bold">Essay Writing</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Custom-written essays on any topic, adhering to your specific instructions and academic standards. From high school to university level.
+                        </p>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 border-t-4 border-secondary hover:border-accent">
+                        <div class="flex items-center mb-4 text-secondary">
+                            <svg class="h-8 w-8 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0113 3.414l2.586 2.586A2 2 0 0116 8v10a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm4.5 1.5l.5-1H6a1 1 0 00-1 1v12a1 1 0 001 1h8a1 1 0 001-1V8.5l-2.5-2.5z" clip-rule="evenodd"></path>
+                            </svg>
+                            <h3 class="text-2xl font-bold">Research Papers</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            In-depth research, critical analysis, and scholarly writing for complex research papers across various disciplines.
+                        </p>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 border-t-4 border-secondary hover:border-accent">
+                        <div class="flex items-center mb-4 text-secondary">
+                            <svg class="h-8 w-8 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 002-2V4H4zm10 8a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4a2 2 0 012-2h10zm-4.5-1.5a.5.5 0 00-1 0V15a.5.5 0 001 0v-4.5z" clip-rule="evenodd"></path>
+                            </svg>
+                            <h3 class="text-2xl font-bold">Thesis & Dissertation</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Comprehensive support for your master's thesis or doctoral dissertation, from proposal to final defense.
+                        </p>
+                    </div>
+                    <!-- Service Card 4 -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 border-t-4 border-secondary hover:border-accent">
+                        <div class="flex items-center mb-4 text-secondary">
+                            <svg class="h-8 w-8 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.38-2.828-2.828z"></path>
+                            </svg>
+                            <h3 class="text-2xl font-bold">Editing & Proofreading</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Meticulous editing and proofreading to refine your existing papers, ensuring clarity, coherence, and grammatical accuracy.
+                        </p>
+                    </div>
+                    <!-- Service Card 5 -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 border-t-4 border-secondary hover:border-accent">
+                        <div class="flex items-center mb-4 text-secondary">
+                            <svg class="h-8 w-8 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12a1 1 0 100-2 1 1 0 000 2zm.621 3.5c-1.467.544-3.064.54-4.532 0A9.988 9.988 0 012 10V3a1 1 0 011-1h14a1 1 0 011 1v7c0 2.052-.774 3.963-2.07 5.498z"></path>
+                            </svg>
+                            <h3 class="text-2xl font-bold">Admission Essays</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Craft compelling and unique admission essays that highlight your strengths and secure your spot in your dream university.
+                        </p>
+                    </div>
+                    <!-- Service Card 6 -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 border-t-4 border-secondary hover:border-accent">
+                        <div class="flex items-center mb-4 text-secondary">
+                            <svg class="h-8 w-8 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+                            </svg>
+                            <h3 class="text-2xl font-bold">Custom Writing</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Any academic writing task not listed above, tailored to your specific requirements and academic guidelines.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-16 md:py-24 bg-gray-100 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-extrabold text-center mb-12 text-primary section-heading">Our Simple Process</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <!-- Step 1 -->
+                    <div class="relative bg-white rounded-lg shadow-lg p-8 border-b-4 border-accent hover:border-primary transition-colors duration-300">
+                        <div class="w-16 h-16 bg-primary text-textlight rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold border-4 border-white shadow-md">1</div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Place Your Order</h3>
+                        <p class="text-gray-700">Fill out our easy order form with your assignment details and requirements.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="relative bg-white rounded-lg shadow-lg p-8 border-b-4 border-accent hover:border-primary transition-colors duration-300">
+                        <div class="w-16 h-16 bg-primary text-textlight rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold border-4 border-white shadow-md">2</div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Expert Match</h3>
+                        <p class="text-gray-700">We assign your task to a qualified writer with expertise in your subject.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="relative bg-white rounded-lg shadow-lg p-8 border-b-4 border-accent hover:border-primary transition-colors duration-300">
+                        <div class="w-16 h-16 bg-primary text-textlight rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold border-4 border-white shadow-md">3</div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Review & Download</h3>
+                        <p class="text-gray-700">Receive your completed paper, review it, and download with ease.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="relative bg-white rounded-lg shadow-lg p-8 border-b-4 border-accent hover:border-primary transition-colors duration-300">
+                        <div class="w-16 h-16 bg-primary text-textlight rounded-full flex items-center justify-center mx-auto mb-6 text-3xl font-bold border-4 border-white shadow-md">4</div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Free Revisions</h3>
+                        <p class="text-gray-700">Request free revisions if anything needs adjustment until you are 100% satisfied.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-choose-us" class="py-16 md:py-24 bg-white fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-extrabold text-center mb-12 text-primary section-heading">Why Choose AcademicaAid?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="flex items-start bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <svg class="h-10 w-10 text-secondary mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary mb-2">100% Original Content</h3>
+                            <p class="text-gray-700">Every paper is written from scratch, ensuring originality and passing all plagiarism checks.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="flex items-start bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <svg class="h-10 w-10 text-secondary mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M6 6a2 2 0 00-2 2v3a2 2 0 002 2h3v2l1-1 1 1v-2h3a2 2 0 002-2V8a2 2 0 00-2-2H6zm-3 2a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm5 3.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm6 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary mb-2">Experienced Writers</h3>
+                            <p class="text-gray-700">Our team consists of highly qualified academic writers with Master's and Ph.D. degrees.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="flex items-start bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <svg class="h-10 w-10 text-secondary mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary mb-2">On-Time Delivery</h3>
+                            <p class="text-gray-700">We guarantee timely delivery of all orders, even those with tight deadlines.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div class="flex items-start bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <svg class="h-10 w-10 text-secondary mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0a6 6 0 11-12 0 6 6 0 0112 0zm-1 0a1 1 0 11-2 0 1 1 0 012 0zm-7 0a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary mb-2">24/7 Customer Support</h3>
+                            <p class="text-gray-700">Our dedicated support team is available around the clock to assist you.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 5 -->
+                    <div class="flex items-start bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <svg class="h-10 w-10 text-secondary mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2h2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary mb-2">Confidentiality Assured</h3>
+                            <p class="text-gray-700">Your personal information and order details are always kept strictly confidential.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 6 -->
+                    <div class="flex items-start bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <svg class="h-10 w-10 text-secondary mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary mb-2">Free Revisions</h3>
+                            <p class="text-gray-700">We offer unlimited free revisions to ensure your complete satisfaction with the final paper.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-16 md:py-24 bg-gray-100 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-extrabold text-center mb-12 text-primary section-heading">What Our Clients Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 relative">
+                        <svg class="absolute top-4 left-4 h-12 w-12 text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10H5a1 1 0 110-2h9.586l-4.293-4.293a1 1 0 011.414-1.414l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <p class="italic text-gray-700 mb-6 text-lg relative z-10">
+                            "AcademicaAid saved my semester! The research paper they delivered was exceptional,
+                            well-research, and perfectly formatted. Highly recommend their services."
+                        </p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/60x60/secondary/FFFFFF?text=JD" alt="Client avatar for Jane Doe" class="w-12 h-12 rounded-full mr-4 border-2 border-primary">
+                            <div>
+                                <p class="font-bold text-primary">Jane Doe</p>
+                                <p class="text-sm text-gray-500">University Student</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 relative">
+                        <svg class="absolute top-4 left-4 h-12 w-12 text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10H5a1 1 0 110-2h9.586l-4.293-4.293a1 1 0 011.414-1.414l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <p class="italic text-gray-700 mb-6 text-lg relative z-10">
+                            "The editing service was phenomenal. My thesis now reads much smoother and is free of any errors.
+                            The attention to detail was impressive."
+                        </p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/60x60/secondary/FFFFFF?text=MS" alt="Client avatar for Mark Smith" class="w-12 h-12 rounded-full mr-4 border-2 border-primary">
+                            <div>
+                                <p class="font-bold text-primary">Mark Smith</p>
+                                <p class="text-sm text-gray-500">Ph.D. Candidate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 transform hover:scale-105 transition-transform duration-300 relative">
+                        <svg class="absolute top-4 left-4 h-12 w-12 text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10H5a1 1 0 110-2h9.586l-4.293-4.293a1 1 0 011.414-1.414l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <p class="italic text-gray-700 mb-6 text-lg relative z-10">
+                            "Fast, reliable, and high-quality. AcademicaAid helped me meet a very tight deadline without compromising
+                            on the quality of my paper. Fantastic service!"
+                        </p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/60x60/secondary/FFFFFF?text=AL" alt="Client avatar for Anna Lee" class="w-12 h-12 rounded-full mr-4 border-2 border-primary">
+                            <div>
+                                <p class="font-bold text-primary">Anna Lee</p>
+                                <p class="text-sm text-gray-500">College Student</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing/Call to Action Section -->
+        <section id="pricing" class="py-16 md:py-24 bg-primary text-textlight fade-in-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-extrabold mb-8 section-heading text-textlight">Ready to Get Started?</h2>
+                <p class="text-xl mb-12 max-w-2xl mx-auto opacity-90">
+                    Get an instant quote for your academic writing needs. Our pricing is transparent and competitive.
+                </p>
+                <a href="#contact" class="bg-accent text-primary px-10 py-5 rounded-full font-bold text-xl hover:bg-yellow-400 transition duration-300 shadow-xl transform hover:scale-105 animate-bounce-slow">
+                    Get a Free Quote Now!
+                </a>
+                <div class="mt-8 text-gray-200 text-sm">
+                    <p>*Prices vary based on urgency, academic level, and page count.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about-us" class="py-16 md:py-24 bg-white fade-in-section">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/600x400/primary/FFFFFF?text=About+Us+Image" alt="A diverse team collaborating in an office setting" class="rounded-lg shadow-xl max-w-full h-auto">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h2 class="text-4xl font-extrabold mb-6 text-primary section-heading">About AcademicaAid</h2>
+                    <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                        At AcademicaAid, we are passionate about supporting students in their academic journeys.
+                        Founded by a team of dedicated educators and professional writers, our mission is to
+                        provide high-quality, reliable, and ethical academic assistance.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        We believe in fostering academic integrity while helping students navigate the complexities
+                        of scholarly writing. Our commitment to excellence, originality, and client satisfaction
+                        sets us apart.
+                    </p>
+                    <a href="#contact" class="inline-block mt-8 bg-secondary text-textlight px-6 py-3 rounded-full font-bold hover:bg-blue-600 transition duration-300 shadow-md">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 bg-gray-100 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-extrabold text-center mb-12 text-primary section-heading">Contact Us</h2>
+                <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-xl p-8 md:p-12">
+                    <p class="text-lg text-center text-gray-700 mb-8">
+                        Have questions or need a custom quote? Reach out to us through the form below or using the contact details provided.
+                    </p>
+                    <!-- Contact Form (Non-functional HTML only) -->
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-base" placeholder="Dryne" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-base" placeholder="dryne2021@gmail.com" required>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" id="subject" name="subject" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-base" placeholder="Inquiry about services">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                            <textarea id="message" name="message" rows="6" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-base" placeholder="Tell us about your needs..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-primary text-textlight px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-800 transition duration-300 shadow-lg transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                    <div class="mt-12 text-center">
+                        <p class="text-lg text-gray-700 mb-4">If you want to reach us, you can call us or email us via:</p>
+                        <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8">
+                            <a href="mailto:dryne2021@gmail.com" class="flex items-center text-primary hover:text-secondary transition-colors duration-300">
+                                <svg class="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                dryne2021@gmail.com
+                            </a>
+                            <a href="tel:+254796341760" class="flex items-center text-primary hover:text-secondary transition-colors duration-300">
+                                <svg class="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                                +254796341760
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-textlight py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex flex-wrap justify-center space-x-6 mb-8 text-lg">
+                <a href="#home" class="hover:text-accent transition duration-300">Home</a>
+                <a href="#services" class="hover:text-accent transition duration-300">Services</a>
+                <a href="#about-us" class="hover:text-accent transition duration-300">About Us</a>
+                <a href="#contact" class="hover:text-accent transition duration-300">Contact</a>
+                <a href="https://placehold.co/blog" class="hover:text-accent transition duration-300">Blog</a> <!-- Placeholder link -->
+                <a href="https://placehold.co/faq" class="hover:text-accent transition duration-300">FAQ</a> <!-- Placeholder link -->
+            </div>
+            <div class="flex justify-center space-x-6 mb-8">
+                <!-- Social Media Icons (placeholders) -->
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="text-textlight hover:text-accent transition duration-300">
+                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22H12c5.523 0 10-4.477 10-10z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="text-textlight hover:text-accent transition duration-300">
+                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c1.83 0 3.578-.654 4.965-1.745 1.385-1.091 2.37-2.585 2.87-4.225.502-1.64.604-3.344.305-5.011-.299-1.667-.993-3.23-1.977-4.576.994.137 1.968.498 2.855 1.054.887.557 1.635 1.306 2.213 2.195-.58.18-1.19.273-1.79.273-.61 0-1.206-.095-1.764-.287.674-.132 1.31-.383 1.884-.748.574-.365 1.07-.84-1.48-1.41-.676.134-1.31.383-1.884.748-.574.365-1.07-.84-1.48-1.41zm-1.05 6.096c-1.83 0-3.578-.654-4.965-1.745-1.385-1.091-2.37-2.585-2.87-4.225-.502-1.64-.604-3.344-.305-5.011-.299-1.667-.993-3.23-1.977-4.576.994.137 1.968.498 2.855 1.054.887.557 1.635 1.306 2.213 2.195-.58.18-1.19.273-1.79.273-.61 0-1.206-.095-1.764-.287.674-.132 1.31-.383 1.884-.748.574-.365 1.07-.84-1.48-1.41-.676.134-1.31.383-1.884.748-.574.365-1.07-.84-1.48-1.41z"/></svg>
+                </a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="text-textlight hover:text-accent transition duration-300">
+                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M21 0H3C1.34 0 0 1.34 0 3v18c0 1.66 1.34 3 3 3h18c1.66 0 3-1.34 3-3V3c0-1.66-1.34-3-3-3zM8 19H5V8h3v11zM6.5 6.732c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764c.967 0 1.75.79 1.75 1.764s-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-3.729-3.26-3.729 0V19H10V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+            <p class="text-sm text-gray-400">&copy; 2025 AcademicaAid. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open
+                if (window.innerWidth < 768) { // md breakpoint is 768px in Tailwind
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Intersection Observer for fade-in effect on sections
+        const fadeInSections = document.querySelectorAll('.fade-in-section');
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.1 // Trigger when 10% of the section is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Stop observing once it's visible
+                }
+            });
+        }, observerOptions);
+
+        fadeInSections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Simple animation for hero section H1 (pulse effect)
+        const heroH1 = document.querySelector('.hero-h1');
+        if (heroH1) {
+            heroH1.classList.add('animate-pulse');
+        }
+    </script>
+</body>
+</html>
